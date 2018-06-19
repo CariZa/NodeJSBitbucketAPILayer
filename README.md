@@ -14,6 +14,15 @@ Install these packages:
     npm install request --save
     npm install request-promise --save
 
+Add .gitignore 
+
+    touch .gitignore
+
+Add
+
+    /node_modules
+
+
 ### Create server.js file
 
 Create an server.js file
