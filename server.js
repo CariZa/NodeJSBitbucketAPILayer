@@ -55,11 +55,13 @@ app.listen(port, () => {
 
 app.get('/users', (req, res) => {
     // Note: In this case http worked and https did not (issues with the https certificate)
-    let url = "http://"+bitbucket_org_url+"/rest/api/1.0/admin/users";
+    let url = "http://"+bitbucket_org_url+"/rest/api/1.0/admin/users?limit=1000";
+    let logstashurl = "http://"+logstash_name+":9071";
     let authtoken = bitbucket_api_token;
     getData(url, authtoken)
         .then((data) => {
-            return postData(data);
+
+            return postData(logstashurl, data);
         })
         .then((data) => {
             console.log("/users success on postData", data);
