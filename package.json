@@ -1,0 +1,27 @@
+{
+  "name": "nodejsbitbucketapilayer",
+  "version": "1.0.0",
+  "description": "The bitbucket api request layer for the elastic stack I'm putting together as a POC",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CariZa/NodeJSBitbucketAPILayer.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CariZa/NodeJSBitbucketAPILayer/issues"
+  },
+  "homepage": "https://github.com/CariZa/NodeJSBitbucketAPILayer#readme",
+  "devDependencies": {
+    "nodemon": "^1.17.5"
+  },
+  "dependencies": {
+    "express": "^4.16.3",
+    "request": "^2.87.0",
+    "request-promise": "^4.2.2"
+  }
+}
