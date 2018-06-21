@@ -40,7 +40,8 @@ var
     rp = require('request-promise'),
     // Default environment variables:
     logstash_name = process.env.LOGSTASH_NAME || "logstash",
-    port = process.env.PORT || 3010,
+    logstash_port_1 = process.env.LOGSTASH_PORT_1 || 8071,
+    port = process.env.PORT || 3000,
     bitbucket_api_token = process.env.BITBUCKET_API_TOKEN,
     bitbucket_org_url = process.env.BITBUCKET_ORGANISATION_DOMAIN;
 
@@ -56,16 +57,16 @@ app.listen(port, () => {
 app.get('/users', (req, res) => {
     // Note: In this case http worked and https did not (issues with the https certificate)
     let url = "http://"+bitbucket_org_url+"/rest/api/1.0/admin/users?limit=1000";
-    let logstashurl = "http://"+logstash_name+":9071";
+    let logstashurl = "http://"+logstash_name+":"+logstash_port_1;
     let authtoken = bitbucket_api_token;
     getData(url, authtoken)
         .then((data) => {
-
             return postData(logstashurl, data);
         })
         .then((data) => {
-            console.log("/users success on postData", data);
-            res.send(data);
+            console.log(data.value);
+            let send = data.value;
+            res.send(send);
         })
             .catch((err) => {
                 console.log("/users err on postData", err);
@@ -94,6 +95,7 @@ function getData(url, authtoken) {
 function postData(url, sendlogstash_data) {
 
     if (sendlogstash_data === undefined) {
+        console.log("No logdashdata to send.");
         return;
     }
 
